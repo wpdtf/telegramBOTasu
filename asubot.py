@@ -1,6 +1,8 @@
 import telebot
 import config
 import asuBD
+import time
+
 from random import randint
 from array import *
 from datetime import datetime, timedelta, date
@@ -11,6 +13,8 @@ global textZayavka, Location, Mobily, vaschnost
 
 bot = telebot.TeleBot(config.token)
 
+
+markupNone = types.InlineKeyboardMarkup(row_width=1)
 
 markupASU = types.InlineKeyboardMarkup(row_width=2)
 itemA1 = types.InlineKeyboardButton('Заявки', callback_data="bt1")
@@ -47,8 +51,8 @@ itemM46 = types.InlineKeyboardButton('Назад', callback_data="back")
 markup4.add(itemM41, itemM42, itemM43, itemM44, itemM45, itemM46)
 
 markup5 = types.InlineKeyboardMarkup(row_width=2)
-itemM51 = types.InlineKeyboardButton('коммутаторы', callback_data="bt5")
-itemM52 = types.InlineKeyboardButton('сервера', callback_data="bt6")
+itemM51 = types.InlineKeyboardButton('Коммутаторы', callback_data="bt5")
+itemM52 = types.InlineKeyboardButton('Сервера', callback_data="bt6")
 itemM53 = types.InlineKeyboardButton('Назад', callback_data="bt3")
 markup5.add(itemM51, itemM52, itemM53)
 
@@ -86,66 +90,64 @@ def callback(call):
         elif call.data == "back":
             bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = "Меню!-------------------->", reply_markup=markupASU)
         elif call.data == "bt2":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             sotr(call.message)
         elif call.data == "bt3":
             bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = "Меню - Дополнительные функции", reply_markup=markup4)
         elif call.data == "bt4":
             bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = "Меню - Дополнительные функции - Устройства", reply_markup=markup5)
         elif call.data == "bt5":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             commutatorsInsert(call.message)
         elif call.data == "bt6":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             serversInsert(call.message)
         elif call.data == "bt1_1":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             zayavka(call.message)
         elif call.data == "bt1_2":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             vseHelpMy(call.message)
         elif call.data == "bt1_3":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             vseHelpMyEZNedel(call.message)
         elif call.data == "bt2_1":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             pinCode(call.message)
         elif call.data == "bt3_1":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             commutators(call.message)
         elif call.data == "bt3_2":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             servers(call.message)
         elif call.data == "bt3_3":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             spamMessage(call.message)
         elif call.data == "bt3_4":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             log(call.message)
         elif call.data == "bt5_1":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             commutatorsD(call.message)
         elif call.data == "bt5_2":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             commutatorsIN(call.message)
         elif call.data == "bt6_1":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             serversD(call.message)
         elif call.data == "bt6_2":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             serversIN(call.message)
         elif call.data == "bt8_1":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             zayavkaIn(call.message)
         elif call.data == "bt8_2":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.edit_message_text(chat_id = call.message.chat.id, message_id=call.message.id, text = 'Старое сообщение....', reply_markup = markupNone)
             zayavkaD(call.message)
 
 def realAsu(id):
-    print(id)
     result = []
     result = asuBD.sql(f"select * from userAsu where id = {id};")
-    print(result)
     if len(result)!=0:
         return True
     else:
@@ -478,10 +480,11 @@ def serversDelete(message):
         serversInsert(message)
     else: serversInsert(message)
 
-
-try:
-    bot.polling(none_stop=True)
-except Exception as errors:
-    print(f"Внимание ОШИБКА 😳")
-    print(errors)
-    bot.polling(none_stop=True)
+while(True):
+    try:
+        bot.polling(none_stop=True)
+    except Exception as errors:
+        print(f"Внимание ОШИБКА 😳")
+        print(errors)
+        time.sleep(300)
+        bot.polling(none_stop=True)
